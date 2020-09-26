@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="1447.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.mainController">
+   <children>
+      <ImageView fx:id="img_dice" fitHeight="378.0" fitWidth="345.0" layoutX="1099.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/shape.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lbl_int" layoutX="1214.0" layoutY="109.0" prefHeight="116.0" prefWidth="49.0" text="8" textFill="#12db17">
+         <font>
+            <Font size="82.0" />
+         </font>
+      </Label>
+      <Button fx:id="btt_10time" layoutX="1122.0" layoutY="393.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="128.0" text="10번 돌리기" />
+      <Spinner fx:id="spinner_main" layoutX="1257.0" layoutY="393.0" prefHeight="55.0" prefWidth="128.0" />
+      <Button fx:id="btt_customspin" layoutX="1385.0" layoutY="393.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="52.0" text="돌리기" />
+      <Label layoutX="1203.0" layoutY="338.0" text="그림을 클릭하여 돌리기">
+         <font>
+            <Font name="NanumGothic" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_cond1" layoutX="36.0" layoutY="90.0" stylesheets="@../css/style_cond.css" text="1~2의 눈이 나오면 왼쪽으로 1칸" />
+      <Label fx:id="lbl_cond2" layoutX="36.0" layoutY="160.0" stylesheets="@../css/style_cond.css" text="3~4의 눈이 나오면 오른쪽으로 1칸" />
+      <Label fx:id="lbl_cond3" layoutX="36.0" layoutY="230.0" stylesheets="@../css/style_cond.css" text="5~6의 눈이 나오면 위쪽으로 1칸" />
+      <Label fx:id="lbl_cond4" layoutX="36.0" layoutY="300.0" stylesheets="@../css/style_cond.css" text="7~8의 눈이 나오면 아래쪽으로 1칸" />
+      <Label layoutX="36.0" layoutY="20.0" stylesheets="@../css/style_cond.css" text="[조건]">
+         <font>
+            <Font name="NanumGothicExtraBold" size="26.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="553.0" fitWidth="554.0" layoutX="539.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/coordinate.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="35.0" layoutY="421.0" stylesheets="@../css/style_info.css" text="나는 태현" />
+      <Label layoutX="36.0" layoutY="393.0" stylesheets="@../css/style_info.css" text="2020 확률과 통계 과제 발표" />
+      <Button fx:id="btt_stop" layoutX="1122.0" layoutY="458.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="128.0" text="정지" />
+      <Button fx:id="btt_reset" layoutX="1257.0" layoutY="458.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="128.0" text="초기화" />
+      <Circle fx:id="circle_main" fill="DODGERBLUE" layoutX="816.0" layoutY="283.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
+      <Spinner fx:id="spinner_sub" layoutX="1257.0" layoutY="523.0" prefHeight="30.0" prefWidth="128.0" />
+      <Label layoutX="1157.0" layoutY="521.0" stylesheets="@../css/style_cond.css" text="속도" />
+      <Label fx:id="lbl_rest" layoutX="1257.0" layoutY="3.0" stylesheets="@../css/style_cond.css" text="남은횟수: 0회" />
+   </children>
+</Pane>
