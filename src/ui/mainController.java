@@ -5,17 +5,12 @@ import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-import sun.audio.AudioPlayer;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -32,18 +27,26 @@ public class mainController implements Initializable {
     @FXML
     private ImageView img_dice;
     @FXML
-    private Label lbl_int, lbl_cond1, lbl_cond2, lbl_cond3, lbl_cond4, lbl_rest;
+    private Label lbl_int, lbl_cond1, lbl_cond2, lbl_cond3, lbl_cond4, lbl_rest, lbl_scroll;
     @FXML
     private Circle circle_main;
     @FXML
     private Button btt_stop, btt_reset, btt_10time, btt_customspin;
     @FXML
     private Spinner<Integer> spinner_sub, spinner_main;
+    @FXML
+    private ScrollPane scroll_main;
 
     //Default
     private RotateTransition rotateTransition;
     private TranslateTransition translateTransition;
     private int repeat = 0;
+
+    private void scrollValue(int input){
+        String ScrollText = lbl_scroll.getText();
+        int amount = ScrollText.split("\n").length;
+        lbl_scroll.setText(ScrollText+"\n"+amount+"회: "+input);
+    }
 
     private void checkrepeat(){
         repeat --;
@@ -59,9 +62,10 @@ public class mainController implements Initializable {
         lbl_int.setVisible(true);
         int rand = new Random().nextInt(8)+1;
         lbl_int.setText(String.valueOf(rand));
+        scrollValue(rand);
         if(rand <= 2){
             lbl_cond1.setTextFill(Color.RED);
-            translateTransition.setByX(-27.5);
+            translateTransition.setByX(-27.4);
             translateTransition.setByY(0);
             translateTransition.play();
             translateTransition.setOnFinished( e -> {
@@ -70,7 +74,7 @@ public class mainController implements Initializable {
             });
         }else if(rand <= 4){
             lbl_cond2.setTextFill(Color.RED);
-            translateTransition.setByX(27.5);
+            translateTransition.setByX(27.4);
             translateTransition.setByY(0);
             translateTransition.play();
             translateTransition.setOnFinished( e -> {
@@ -79,7 +83,7 @@ public class mainController implements Initializable {
             });
         }else if(rand <= 6){
             lbl_cond3.setTextFill(Color.RED);
-            translateTransition.setByY(-27.5);
+            translateTransition.setByY(-27.4);
             translateTransition.setByX(0);
             translateTransition.play();
             translateTransition.setOnFinished( e -> {
@@ -88,7 +92,7 @@ public class mainController implements Initializable {
             });
         }else{
             lbl_cond4.setTextFill(Color.RED);
-            translateTransition.setByY(27.5);
+            translateTransition.setByY(27.4);
             translateTransition.setByX(0);
             translateTransition.play();
             translateTransition.setOnFinished( e -> {
@@ -100,7 +104,6 @@ public class mainController implements Initializable {
 
     private void roll(){
         lbl_int.setVisible(false);
-        AudioInputStream audioIn;
         try {
             InputStream bufferedIn = new BufferedInputStream(getClass().getResourceAsStream("/resources/sound.wav"));
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
@@ -130,11 +133,12 @@ public class mainController implements Initializable {
         lbl_cond2.setTextFill(Color.BLACK);
         lbl_cond3.setTextFill(Color.BLACK);
         lbl_cond4.setTextFill(Color.BLACK);
+        lbl_scroll.setPadding(new Insets( 0, 12, 0,12));
 
         //spinner
         spinner_sub.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(500, 3000, 1500, 500));
         spinner_sub.valueProperty().addListener( e -> translateTransition.setDuration(Duration.millis(spinner_sub.getValue())) );
-        spinner_main.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 20, 1));
+        spinner_main.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 30, 1));
 
         //Listener
         btt_customspin.setOnMouseClicked( e -> {
@@ -157,6 +161,7 @@ public class mainController implements Initializable {
         btt_reset.setOnMouseClicked( e -> {
            circle_main.setTranslateX(0);
            circle_main.setTranslateY(0);
+           lbl_scroll.setText("");
         });
         btt_10time.setOnMouseClicked( e-> {
             if(repeat == 0) {

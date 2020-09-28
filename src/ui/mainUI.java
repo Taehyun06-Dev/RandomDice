@@ -22,6 +22,7 @@ public class mainUI extends Application {
         stage.setTitle("랜덤 주사위");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/dice.png")));
         stage.initStyle(StageStyle.DECORATED);
+        stage.setResizable(false);
         root.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
